@@ -1,0 +1,40 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: nu, unit: Hz, datatype: float64, format: '{:.4e}'}
+# - {name: nu_min, unit: Hz, datatype: float64, format: '{:.4e}'}
+# - {name: nu_max, unit: Hz, datatype: float64, format: '{:.4e}'}
+# - {name: flux, unit: erg / (s cm2), datatype: float64, format: '{:.4e}'}
+# - {name: flux_errn, unit: erg / (s cm2), datatype: float64, format: '{:.4e}'}
+# - {name: flux_errp, unit: erg / (s cm2), datatype: float64, format: '{:.4e}'}
+# - {name: filter, datatype: string}
+# meta: !!omap
+# - __serialized_columns__:
+#     flux:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: flux}
+#     flux_errn:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: flux_errn}
+#     flux_errp:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: !astropy.units.Unit {unit: erg / (s cm2)}
+#       value: !astropy.table.SerializedColumn {name: flux_errp}
+#     nu:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: &id001 !astropy.units.Unit {unit: Hz}
+#       value: !astropy.table.SerializedColumn {name: nu}
+#     nu_max:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: nu_max}
+#     nu_min:
+#       __class__: astropy.units.quantity.Quantity
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: nu_min}
+# schema: astropy-2.0
+nu nu_min nu_max flux flux_errn flux_errp filter
+637517825870787.9 68454232846418.25 68454232846418.25 1.2113201145647001e-11 2.3284277563454626e-13 2.3284277563454626e-13 SLOAN/SDSS.g
+444126976666728.06 73975059826660.22 73975059826660.22 1.250121266361257e-11 5.422020138111143e-13 5.422020138111143e-13 Misc/Atlas.orange

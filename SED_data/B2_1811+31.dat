@@ -1,0 +1,3 @@
+facility_name, filter_ID, F(mJy), F_errn(mJy), F_errp(mJy), mag, mag_errn, mag_errp
+Sloan, SLOAN/SDSS.g, 1.6369274, 0.0314654, 0.0314654, , ,
+Atlas, Misc/Atlas.orange, 2.5597708, 0.11102226, 0.11102226, , ,
