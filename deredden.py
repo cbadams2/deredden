@@ -50,7 +50,7 @@ def deredden(src_name, facility_name, filter_ID, val=None, convertJy2Eflux=False
 		return A_lambda
 
 	val *= u.dimensionless_unscaled
-	
+	old_unit = val.unit	
 	if val.unit.is_equivalent(u.Unit('erg / (cm2 s)')):
 		print('Assuming your input value is given in erg / (cm2 s)')
 		print('If this is incorrect, please provide variable with the correct astropy units')
@@ -63,8 +63,8 @@ def deredden(src_name, facility_name, filter_ID, val=None, convertJy2Eflux=False
 			print('Your return value is in erg / (cm2 s)')
 			return (val.to(u.Jy) * lambda_ref.to(u.Hz) * 10**(0.4 * A_lambda)).to(u.Unit('erg / (cm2 s)'))
 		else:
-			print('Your return value is in Jy')
-			return val.to(u.Jy) * 10**(0.4 * A_lambda)
+			print('Your return value is given as a spectral flux density')
+			return (val.to(u.Jy) * 10**(0.4 * A_lambda)).to(old_unit)
 	elif val.unit.is_equivalent(u.dimensionless_unscaled):
 		print('Assuming your input value is given as a magnitude')
 		print('If this is incorrect, please provide variable with astropy units')
