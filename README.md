@@ -62,3 +62,8 @@ flux_extcorr_Jy = deredden.deredden(src_name, facility_name, filter_ID, val=flux
 ## Or you can correct it and get it back in energy flux [erg / (cm2 s)]
 flux_extcorr_eflux = deredden.deredden(src_name, facility_name, filter_ID, val=fluxdensity, convertJy2Eflux=True)
 ```
+
+One can also access the generic filters, by only specifying the filter_ID and not providing a facility_name:
+```
+deredden.deredden(src_name, filter_ID='Generic/Cousins.R', val=fluxdensity, convertJy2Eflux=True)
+```

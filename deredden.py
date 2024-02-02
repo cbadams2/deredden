@@ -26,7 +26,7 @@ def get_lambda_4_filter(facility_name=None, filter_ID=None, lambda_type='Wavelen
 	lambda_out = filter_list[filter_list['filterID']==filter_ID][lambda_type].quantity[0]
 	return lambda_out
 
-def deredden(src_name, facility_name, filter_ID, val=None, convertJy2Eflux=False):
+def deredden(src_name, facility_name=None, filter_ID=None, val=None, convertJy2Eflux=False):
 	"""
 	Function to compute dereddening. If no value provided, will return just A_lambda.
 	If val provided, will check units to apply dereddening correctly.
