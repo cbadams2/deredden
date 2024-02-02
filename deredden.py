@@ -109,9 +109,9 @@ if __name__=="__main__":
 		lambda_ref = get_lambda_4_filter(row['facility_name'], row['filter_ID'], lambda_type='WavelengthRef')
 		nu = lambda_ref.to(u.Hz)
 		fwhm = get_lambda_4_filter(row['facility_name'], row['filter_ID'], lambda_type='FWHM')
-		lambda_ref_err = fwhm / np.sqrt(8 * np.log(2))
+		lambda_ref_stdev = fwhm / np.sqrt(8 * np.log(2))
+		lambda_ref_err = fwhm / 2
 		nu_err = ((lambda_ref-lambda_ref_err).to(u.Hz) - (lambda_ref+lambda_ref_err).to(u.Hz)) / 2. 
-		#nu_err = lambda_ref_err.to(u.Hz)
 		out_table.add_row([nu, nu_err, nu_err, flux_extcorr, flux_errn_extcorr, flux_errp_extcorr, row['filter_ID']])
 	
 	for col in out_table.itercols():
