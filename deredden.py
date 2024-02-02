@@ -13,8 +13,16 @@ from astropy.table import Column, Table, QTable
 import astropy.coordinates as coord
 u.set_enabled_equivalencies(u.spectral())
 
-def get_lambda_4_filter(facility_name, filter_ID, lambda_type='WavelengthRef'):
-	filter_list = SvoFps.get_filter_list(facility=facility_name)
+def get_lambda_4_filter(facility_name=None, filter_ID=None, lambda_type='WavelengthRef'):
+	if filter_ID is None:
+		raise ValueError("filter_ID must be defined")
+	
+	if facility_name is not None:
+		filter_list = SvoFps.get_filter_list(facility=facility_name)
+	else:
+		phot_sys_maybe = filter_ID.split('/')[1].split('.')[0]
+		filter_list = SvoFps.data_from_svo(query={'PhotSystem': phot_sys_maybe})
+
 	lambda_out = filter_list[filter_list['filterID']==filter_ID][lambda_type].quantity[0]
 	return lambda_out
 
@@ -42,7 +50,7 @@ def deredden(src_name, facility_name, filter_ID, val=None, convertJy2Eflux=False
 
 	lambda_ref = get_lambda_4_filter(facility_name, filter_ID, lambda_type='WavelengthRef')
 
-	A_lambda_over_A_V = np.interp(lambda_ref, svo_extinction['wave'], svo_extinction['opacity'])/k_V
+	A_lambda_over_A_V = (np.interp(lambda_ref, svo_extinction['wave'], svo_extinction['opacity'])/k_V).value
 
 	A_lambda = A_lambda_over_A_V * A_V_SandF
 
